@@ -6,7 +6,8 @@ public class PlayerScript : MonoBehaviour
 {
 
     public float movementSpeed;
-    public GameObject spawnedSound;
+    public GameObject whistle;
+    public GameObject footstep;
     private float distanceMoved;
     private Vector3 lastPos;
 
@@ -39,12 +40,12 @@ public class PlayerScript : MonoBehaviour
 
         // Spawn sound
         if(Input.GetKeyDown("e")) {
-            Instantiate(spawnedSound, transform.position, Quaternion.identity);
+            Instantiate(whistle, transform.position, Quaternion.identity);
         }
 
         distanceMoved = Vector3.Distance(lastPos, transform.position);
-        if (distanceMoved > 1f) {
-            Instantiate(spawnedSound, transform.position, Quaternion.identity);
+        if (distanceMoved > 1.5f) {
+            Instantiate(footstep, transform.position, Quaternion.identity);
             distanceMoved = 0f;
             lastPos = transform.position;
         }
