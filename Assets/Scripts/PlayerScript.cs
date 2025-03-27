@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
     public float movementSpeed;
     public GameObject whistle;
     public GameObject footstep;
+    public GameObject rock;
     private float distanceMoved;
     private Vector3 lastPos;
 
@@ -43,8 +44,13 @@ public class PlayerScript : MonoBehaviour
             Instantiate(whistle, transform.position, Quaternion.identity);
         }
 
+        if(Input.GetKeyDown("f")) {
+            Rigidbody rockRB = Instantiate(rock, transform.position, transform.rotation).GetComponent<Rigidbody>();
+            rockRB.AddForce(transform.forward * 10f + transform.up * 4f, ForceMode.Impulse);
+        }
+
         distanceMoved = Vector3.Distance(lastPos, transform.position);
-        if (distanceMoved > 1.5f) {
+        if(distanceMoved > 1.5f) {
             Instantiate(footstep, transform.position, Quaternion.identity);
             distanceMoved = 0f;
             lastPos = transform.position;
