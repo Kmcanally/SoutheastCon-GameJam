@@ -8,12 +8,13 @@ public class MonsterAI : MonoBehaviour
     public MonsterState currentState;
 
     public Transform player;
-    public float noiseThreshold = 5f; // Noise level needed to start hunting
-    public float searchDuration = 5f; // Time spent investigating
-    public float detectionRange = 10f; // Range to detect light sources
-    public float lostPlayerTime = 3f; // Time before the monster "forgets" the player
-    public float hidingDetectionRange = 4f; // How close the monster needs to be to detect a hiding player
-    public float playerMovementDetectionThreshold = 0.1f; // Movement sensitivity
+    public float noiseThreshold = 5f;           // Noise level to start investigating
+    public float huntThreshold = 10f;           // Noise level to start hunting
+    public float searchDuration = 5f;           // Time to investigate a sound
+    public float detectionRange = 10f;          // Light detection range
+    public float lostPlayerTime = 3f;           // Time before the monster forgets the player
+    public float hidingDetectionRange = 4f;     // How close the monster must be to detect a hidden player
+    public float playerMovementDetectionThreshold = 0.1f;
 
     private NavMeshAgent agent;
     private Vector3 lastKnownPlayerPos;
@@ -93,7 +94,7 @@ public class MonsterAI : MonoBehaviour
     IEnumerator LosePlayer()
     {
         yield return new WaitForSeconds(lostPlayerTime);
-        
+
         if (currentState == MonsterState.Hunting)
         {
             lostPlayer = true;
@@ -114,11 +115,31 @@ public class MonsterAI : MonoBehaviour
 
     public void UpdateNoiseLevel(float noiseLevel)
     {
-        if (noiseLevel >= noiseThreshold)
+        if (noiseLevel >= huntThreshold)
         {
-            lastKnownPlayerPos = player.position;
             currentState = MonsterState.Hunting;
         }
+        else if (noiseLevel >= noiseThreshold)
+        {
+            lastKnownPlayerPos = player.position;
+            currentState = MonsterState.Investigative;
+        }
+        // Otherwise, monster keeps its current state (likely Roaming)
+    }
+
+    public void ReportNoise(Vector3 noisePos, float noiseLevel)
+    {
+        if (noiseLevel >= huntThreshold)
+        {
+            lastKnownPlayerPos = noisePos;
+            currentState = MonsterState.Hunting;
+        }
+        else if (noiseLevel >= noiseThreshold)
+        {
+            lastKnownPlayerPos = noisePos;
+            currentState = MonsterState.Investigative;
+        }
+        // Below noiseThreshold, monster doesn't react
     }
 
     void DetectLightSources()
@@ -145,12 +166,11 @@ public class MonsterAI : MonoBehaviour
         while (lostPlayer)
         {
             yield return new WaitForSeconds(1f);
-            
+
             float distanceMoved = Vector3.Distance(lastPlayerPosition, player.position);
 
             if (distanceMoved > playerMovementDetectionThreshold)
             {
-                Debug.Log("Player moved while hiding! Monster is resuming the hunt.");
                 currentState = MonsterState.Hunting;
                 lostPlayer = false;
                 isCheckingForMovement = false;
