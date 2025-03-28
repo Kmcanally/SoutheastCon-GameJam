@@ -5,6 +5,7 @@ using UnityEngine;
 public class RockThrow : MonoBehaviour
 {
     public GameObject collisionSound;
+    public GameObject collisionParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class RockThrow : MonoBehaviour
     void OnCollisionEnter(Collision collision) {
         if(!collision.gameObject.CompareTag("Player")) {    
             Instantiate(collisionSound, transform.position, Quaternion.identity);
-
+            Instantiate(collisionParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
