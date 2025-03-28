@@ -21,8 +21,10 @@ public class RockThrow : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        Instantiate(collisionSound, transform.position, Quaternion.identity);
+        if(!collision.gameObject.CompareTag("Player")) {    
+            Instantiate(collisionSound, transform.position, Quaternion.identity);
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

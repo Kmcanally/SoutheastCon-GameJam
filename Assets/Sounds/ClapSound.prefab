@@ -204,4 +204,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b7c4783d3d9e04ba380b3b04d9671b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBright: 10
+  maxBright: 5
