@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class RockThrow : MonoBehaviour
 {
-
-    private Collider collider;
     public GameObject collisionSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        collider.GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame

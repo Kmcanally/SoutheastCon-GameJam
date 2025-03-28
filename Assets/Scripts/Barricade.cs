@@ -9,6 +9,7 @@ public class Barricade : MonoBehaviour
     public GameObject player;
     public int health = 5;
     private float timer;
+    public GameObject parts;
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +25,13 @@ public class Barricade : MonoBehaviour
 
             if(Input.GetMouseButton(0)) {
                 timer += 0.1f;
-                Debug.Log(timer);
-                Debug.Log("Button Down");
+                // Debug.Log(timer);
+                // Debug.Log("Button Down");
                 if(timer >= 100.0f) {
                     health--;
                     Debug.Log(health);
                     timer -= 100.0f;
+                    Instantiate(parts, transform.position, transform.rotation);
                 }
             }
 
