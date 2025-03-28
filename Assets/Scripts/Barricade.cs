@@ -24,13 +24,13 @@ public class Barricade : MonoBehaviour
             // Debug.Log("In range");
 
             if(Input.GetMouseButton(0)) {
-                timer += 0.1f;
+                timer += Time.deltaTime;
                 // Debug.Log(timer);
                 // Debug.Log("Button Down");
-                if(timer >= 100.0f) {
+                if(timer >= 3.0f) {
                     health--;
                     Debug.Log(health);
-                    timer -= 100.0f;
+                    timer -= 3.0f;
                     Instantiate(parts, transform.position, transform.rotation);
                 }
             }
