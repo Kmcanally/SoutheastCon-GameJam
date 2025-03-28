@@ -11,11 +11,13 @@ public class PlayerScript : MonoBehaviour
     public GameObject rock;
     private float distanceMoved;
     private Vector3 lastPos;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
         lastPos = transform.position;
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -55,6 +57,9 @@ public class PlayerScript : MonoBehaviour
             distanceMoved = 0f;
             lastPos = transform.position;
         }
+
+        transform.Rotate(Vector3.right * 0);
+        transform.Rotate(Vector3.forward * 0);
     }
 }
 
