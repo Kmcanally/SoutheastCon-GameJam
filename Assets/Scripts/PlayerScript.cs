@@ -57,9 +57,6 @@ public class PlayerScript : MonoBehaviour
             distanceMoved = 0f;
             lastPos = transform.position;
         }
-
-        transform.Rotate(Vector3.right * 0);
-        transform.Rotate(Vector3.forward * 0);
     }
 }
 
