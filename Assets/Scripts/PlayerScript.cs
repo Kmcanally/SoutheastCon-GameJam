@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class PlayerScript : MonoBehaviour
     private float distanceMoved;
     private Vector3 lastPos;
     private Rigidbody rb;
+    private String currentItem, highlightedItem;
+    private GameObject itemToRemove = null;
+    private int stones = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -46,9 +50,11 @@ public class PlayerScript : MonoBehaviour
             Instantiate(whistle, transform.position, Quaternion.identity);
         }
 
-        if(Input.GetKeyDown("f")) {
+        if(Input.GetKeyDown("f") && stones > 0) {
             Rigidbody rockRB = Instantiate(rock, transform.position, transform.rotation).GetComponent<Rigidbody>();
             rockRB.AddForce(transform.forward * 10f + transform.up * 4f, ForceMode.Impulse);
+            stones--;
+            Debug.Log("Stones: " + stones);
         }
 
         distanceMoved = Vector3.Distance(lastPos, transform.position);
@@ -57,6 +63,58 @@ public class PlayerScript : MonoBehaviour
             distanceMoved = 0f;
             lastPos = transform.position;
         }
+
+        if(Input.GetKeyDown("q")) {
+            currentItem = ChangeItem();
+            Debug.Log("Current: " + currentItem);
+        }
+    }
+
+    private String ChangeItem() {
+        
+
+        Destroy(itemToRemove);
+
+        if(highlightedItem == null || highlightedItem.Equals(currentItem)) {
+            return currentItem;
+        } else if(highlightedItem.Equals("Stone")) {
+            stones++;
+            Destroy(itemToRemove);
+            return currentItem;
+        } else {
+            return highlightedItem;
+        }
+
+        // Potentially add item swap later
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Blowdart")) {
+            highlightedItem = "Blowdart";
+            itemToRemove = other.gameObject;
+        } else if(other.gameObject.CompareTag("Flashlight")) {
+            highlightedItem = "Flashlight";
+            itemToRemove = other.gameObject;
+        } else if(other.gameObject.CompareTag("Whistle")) {
+            highlightedItem = "Whistle";
+            itemToRemove = other.gameObject;
+        } else if(other.gameObject.CompareTag("Stone")) {
+            highlightedItem = "Stone";
+            itemToRemove = other.gameObject;
+        }
+
+        Debug.Log(highlightedItem);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Blowdart") || other.gameObject.CompareTag("Flashlight") || other.gameObject.CompareTag("Whistle")) {
+            highlightedItem = null;
+            itemToRemove = null;
+            Debug.Log(highlightedItem);
+        }
+        
     }
 }
 
