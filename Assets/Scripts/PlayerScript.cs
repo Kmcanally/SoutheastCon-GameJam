@@ -84,6 +84,7 @@ public class PlayerScript : MonoBehaviour
             stones++;
             tmp.SetText(stones.ToString());
             Destroy(itemToRemove);
+            highlightedItem = null;
             return currentItem;
         } else {
             return highlightedItem;
