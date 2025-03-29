@@ -26,16 +26,16 @@ public class GameplayManager : MonoBehaviour
         player.transform.eulerAngles = new Vector3(0, 0, 0);
         animator.SetBool("isRoaring", true);
         StartCoroutine(MiniWaiter());
-        Instantiate(roarSound, player.transform.position, Quaternion.identity);
-        StartCoroutine(Waiter());
-        SceneManager.LoadScene("Credits");
+        StartCoroutine(Waiter());        
     }
 
     IEnumerator Waiter() {
         yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Credits");
     }
 
     IEnumerator MiniWaiter() {
         yield return new WaitForSeconds(0.4f);
+        Instantiate(roarSound, player.transform.position, Quaternion.identity);
     }
 }

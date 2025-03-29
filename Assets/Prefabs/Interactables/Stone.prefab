@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903dcf8ff9217bb45a02f37475772e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionSound: {fileID: 9148644119903529183, guid: 89ef8ff19bcd45741a0da6248701d190, type: 3}
+  collisionSound: {fileID: 9148644119903529183, guid: 76e7a79ba30a9d348bf748a05e97ded6, type: 3}
   collisionParticles: {fileID: 2629846924779695605, guid: 848790c628dd4204db37e292e24f248d, type: 3}
