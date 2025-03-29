@@ -3952,6 +3952,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileParticles 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4044197212829095683, guid: 848790c628dd4204db37e292e24f248d, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7170776055039575407, guid: 848790c628dd4204db37e292e24f248d, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
