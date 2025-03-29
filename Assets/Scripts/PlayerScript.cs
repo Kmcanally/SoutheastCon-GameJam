@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerScript : MonoBehaviour
     private GameObject itemToRemove = null;
     private int stones = 5;
     public TMP_Text tmp;
+    public RawImage image;
+    public Texture flashlight, blowdart;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +74,11 @@ public class PlayerScript : MonoBehaviour
 
         if(Input.GetKeyDown("q")) {
             currentItem = ChangeItem();
+            if(currentItem.Equals("Flashlight")) {
+                image.texture = flashlight;
+            } else if (currentItem.Equals("Blowdart")) {
+                image.texture = blowdart;
+            }
             Debug.Log("Current: " + currentItem);
         }
     }
