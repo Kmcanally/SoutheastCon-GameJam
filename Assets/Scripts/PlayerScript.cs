@@ -21,12 +21,14 @@ public class PlayerScript : MonoBehaviour
     public TMP_Text tmp;
     public RawImage image;
     public Texture flashlight, blowdart;
+    public Light spotLight;
 
     // Start is called before the first frame update
     void Start()
     {
         lastPos = transform.position;
         rb = gameObject.GetComponent<Rigidbody>();
+        spotLight.intensity = 0;
     }
 
     // Update is called once per frame
@@ -52,7 +54,13 @@ public class PlayerScript : MonoBehaviour
 
         // Spawn sound
         if(Input.GetKeyDown("e")) {
-            Instantiate(whistle, transform.position, Quaternion.identity);
+            if(currentItem.Equals("Flashlight")) {
+                spotLight.intensity = 5;
+            }
+        }
+
+        if(spotLight.intensity >= 0) {
+            spotLight.intensity -= Time.deltaTime/2;
         }
 
         if(Input.GetKeyDown("f") && stones > 0) {
