@@ -30,6 +30,19 @@ public class MonsterAI : MonoBehaviour
         StartCoroutine(StateMachine());
     }
 
+    public void Restart() {
+        
+        currentState = MonsterState.Roaming;
+        StopAllCoroutines();
+        StartCoroutine(Waiter());
+        StartCoroutine(StateMachine());
+    }
+
+    IEnumerator Waiter() {
+        Debug.Log("WAITING");
+        yield return new WaitForSeconds(3);
+    }
+
     IEnumerator StateMachine()
     {
         while (true)

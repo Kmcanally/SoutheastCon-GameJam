@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     public RawImage image;
     public Texture flashlight, blowdart;
     public Light spotLight;
+    private MonsterAI monsterAI;
+    private PlayerStealth pStealth;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,8 @@ public class PlayerScript : MonoBehaviour
         lastPos = transform.position;
         rb = gameObject.GetComponent<Rigidbody>();
         spotLight.intensity = 0;
+        monsterAI = FindObjectOfType<MonsterAI>();
+        pStealth = FindObjectOfType<PlayerStealth>();
     }
 
     // Update is called once per frame
@@ -56,6 +60,9 @@ public class PlayerScript : MonoBehaviour
         if(Input.GetKeyDown("e")) {
             if(currentItem.Equals("Flashlight")) {
                 spotLight.intensity = 5;
+            } else if (currentItem.Equals("Blowdart")) {
+                monsterAI.Restart();
+                pStealth.currentNoise = 0f;
             }
         }
 

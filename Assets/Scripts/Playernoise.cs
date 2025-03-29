@@ -6,7 +6,7 @@ public class PlayerStealth : MonoBehaviour
     public float movementNoise = 5f; // Additional noise when moving
     public float rockNoise = 2f;
     public float barricadeNoise = 5f;
-    private float currentNoise = 0f;
+    public float currentNoise = 0f;
     
     private MonsterAI monsterAI;
     private Vector3 lastPosition;
