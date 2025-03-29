@@ -66,13 +66,18 @@ public class PlayerScript : MonoBehaviour
                 monsterAI.Restart();
                 pStealth.currentNoise = 0f;
             }
+
+            if(PlayerPrefs.GetString("Difficulty").Equals("Hard")) {
+                currentItem = null;
+                image.texture = null;
+            }
         }
 
         if(spotLight.intensity >= 0) {
             spotLight.intensity -= Time.deltaTime/2;
         }
 
-        if(Input.GetKeyDown("f") && stones > 0) {
+        if(Input.GetKeyDown("f") && (stones > 0 || PlayerPrefs.GetString("Difficulty").Equals("Easy"))) {
             Rigidbody rockRB = Instantiate(rock, transform.position, transform.rotation).GetComponent<Rigidbody>();
             rockRB.AddForce(transform.forward * 10f + transform.up * 4f, ForceMode.Impulse);
             stones--;
@@ -110,7 +115,11 @@ public class PlayerScript : MonoBehaviour
         } else if(highlightedItem.Equals("Stone")) {
             stones++;
             tmp.SetText(stones.ToString());
-            Destroy(itemToRemove);
+
+            if(!PlayerPrefs.GetString("Difficulty").Equals("Easy")) {
+                Destroy(itemToRemove);
+            }
+
             highlightedItem = null;
             return currentItem;
         } else {
@@ -139,7 +148,7 @@ public class PlayerScript : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy")) {
             gm.GameLose();
         } else if(other.gameObject.CompareTag("End")) {
-            
+            gm.GameWin();
         }
 
         Debug.Log(highlightedItem);
