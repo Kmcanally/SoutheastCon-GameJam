@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Blowdart
+  - Stone
   layers:
   - Default
   - TransparentFX
