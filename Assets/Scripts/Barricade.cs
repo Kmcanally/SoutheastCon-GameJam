@@ -9,7 +9,7 @@ public class Barricade : MonoBehaviour
     public GameObject player;
     public int health = 5;
     private float timer;
-    public GameObject parts;
+    public GameObject parts, breakSound;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class Barricade : MonoBehaviour
                     health--;
                     Debug.Log(health);
                     timer -= 3.0f;
+                    Instantiate(breakSound, transform.position, transform.rotation);
                     Instantiate(parts, transform.position, transform.rotation);
                 }
             }

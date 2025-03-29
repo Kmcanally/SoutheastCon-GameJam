@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlayerScript : MonoBehaviour
     private String currentItem, highlightedItem;
     private GameObject itemToRemove = null;
     private int stones = 5;
+    public TMP_Text tmp;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,7 @@ public class PlayerScript : MonoBehaviour
             Rigidbody rockRB = Instantiate(rock, transform.position, transform.rotation).GetComponent<Rigidbody>();
             rockRB.AddForce(transform.forward * 10f + transform.up * 4f, ForceMode.Impulse);
             stones--;
+            tmp.SetText(stones.ToString());
             Debug.Log("Stones: " + stones);
         }
 
@@ -79,6 +82,7 @@ public class PlayerScript : MonoBehaviour
             return currentItem;
         } else if(highlightedItem.Equals("Stone")) {
             stones++;
+            tmp.SetText(stones.ToString());
             Destroy(itemToRemove);
             return currentItem;
         } else {

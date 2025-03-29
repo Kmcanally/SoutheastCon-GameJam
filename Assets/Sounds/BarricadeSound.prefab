@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5736564955796003561}
   - component: {fileID: 8886125425315983713}
   m_Layer: 0
-  m_Name: FootstepSound
+  m_Name: BarricadeSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7dcf7165c2d8b604687efae380fadb2a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 20e2d72e19444cf45995e8d8108a42b6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
