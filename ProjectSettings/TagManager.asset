@@ -8,6 +8,8 @@ TagManager:
   - Stone
   - LightSource
   - Flashlight
+  - Enemy
+  - End
   layers:
   - Default
   - TransparentFX

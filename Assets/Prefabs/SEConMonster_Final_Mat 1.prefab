@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SEConMonster_Final_Mat 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a97fe9126563adb4ba1a536f0e2e99ff, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -81,6 +85,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a97fe9126563adb4ba1a536f0e2e99ff, type: 3}
       insertIndex: -1
       addedObject: {fileID: 250972077174239536}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a97fe9126563adb4ba1a536f0e2e99ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6301788660951072725}
   m_SourcePrefab: {fileID: 100100000, guid: a97fe9126563adb4ba1a536f0e2e99ff, type: 3}
 --- !u!1 &1306754787007367348 stripped
 GameObject:
@@ -151,3 +158,24 @@ MonoBehaviour:
   lostPlayerTime: 3
   hidingDetectionRange: 4
   playerMovementDetectionThreshold: 5
+--- !u!65 &6301788660951072725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306754787007367348}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}

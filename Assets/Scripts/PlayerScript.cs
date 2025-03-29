@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
     public Light spotLight;
     private MonsterAI monsterAI;
     private PlayerStealth pStealth;
+    public GameplayManager gm;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class PlayerScript : MonoBehaviour
         spotLight.intensity = 0;
         monsterAI = FindObjectOfType<MonsterAI>();
         pStealth = FindObjectOfType<PlayerStealth>();
+        gm = FindObjectOfType<GameplayManager>();
     }
 
     // Update is called once per frame
@@ -132,6 +134,12 @@ public class PlayerScript : MonoBehaviour
         } else if(other.gameObject.CompareTag("Stone")) {
             highlightedItem = "Stone";
             itemToRemove = other.gameObject;
+        }
+
+        if(other.gameObject.CompareTag("Enemy")) {
+            gm.GameLose();
+        } else if(other.gameObject.CompareTag("End")) {
+            
         }
 
         Debug.Log(highlightedItem);
