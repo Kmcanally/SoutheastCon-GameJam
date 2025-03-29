@@ -56,7 +56,9 @@ public class PlayerScript : MonoBehaviour
             Rigidbody rockRB = Instantiate(rock, transform.position, transform.rotation).GetComponent<Rigidbody>();
             rockRB.AddForce(transform.forward * 10f + transform.up * 4f, ForceMode.Impulse);
             stones--;
-            tmp.SetText(stones.ToString());
+            if(tmp != null) {
+                tmp.SetText(stones.ToString());
+            }
             Debug.Log("Stones: " + stones);
         }
 
