@@ -6954,6 +6954,7 @@ MonoBehaviour:
   movementNoise: 50
   rockNoise: 2
   barricadeNoise: 5
+  currentNoise: 0
 --- !u!4 &1741972101 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1334940311582422825, guid: 426c4bd1f9c7aa34e8a0edde6826bd9b, type: 3}
