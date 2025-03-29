@@ -18,9 +18,22 @@ public class SceneController : MonoBehaviour
         settingsPanel.SetActive(true);
     }
 
+    public void SetDifficultyEasy() {
+        PlayerPrefs.SetString("Difficulty", "Easy");
+    }
+
+    public void SetDifficultyMedium() {
+        PlayerPrefs.SetString("Difficulty", "Medium");
+    }
+
+    public void SetDifficultyHard() {
+        PlayerPrefs.SetString("Difficulty", "Hard");
+    }
+
     public void CloseSettings() {
         mainMenuPanel.SetActive(true);
         settingsPanel.SetActive(false);
+        Debug.Log(PlayerPrefs.GetString("Difficulty"));
     }
 
     public void ViewCredits() {
