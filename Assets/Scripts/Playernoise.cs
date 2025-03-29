@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PlayerStealth : MonoBehaviour
 {
-    public float tripNoiseLevel = 8f; // Noise level when tripping
     public float noiseDecay = 1f; // Noise fades over time
     public float movementNoise = 5f; // Additional noise when moving
+    public float rockNoise = 2f;
+    public float barricadeNoise = 5f;
     private float currentNoise = 0f;
     
     private MonsterAI monsterAI;
@@ -31,11 +32,12 @@ public class PlayerStealth : MonoBehaviour
         lastPosition = transform.position;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            currentNoise += tripNoiseLevel;
-        }
+    public void BarricadeNoise() {
+        currentNoise += barricadeNoise;
+    }
+
+    public void RockNoise() {
+        Debug.Log("Rock noise succesfully added");
+        currentNoise += rockNoise;
     }
 }

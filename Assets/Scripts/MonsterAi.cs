@@ -7,7 +7,7 @@ public class MonsterAI : MonoBehaviour
     public enum MonsterState { Roaming, Investigative, Hunting }
     public MonsterState currentState;
 
-    public Transform player;
+    public GameObject player;
     public float noiseThreshold = 5f;           // Noise level to start investigating
     public float huntThreshold = 10f;           // Noise level to start hunting
     public float searchDuration = 5f;           // Time to investigate a sound
@@ -39,6 +39,7 @@ public class MonsterAI : MonoBehaviour
             {
                 case MonsterState.Roaming:
                     Roam();
+                    Debug.Log("Post Roam Test");
                     break;
                 case MonsterState.Investigative:
                     Investigate();
@@ -85,8 +86,8 @@ public class MonsterAI : MonoBehaviour
 
     void Hunt()
     {
-        agent.SetDestination(player.position);
-        lastKnownPlayerPos = player.position;
+        agent.SetDestination(player.transform.position);
+        lastKnownPlayerPos = player.transform.position;
         lostPlayer = false;
 
         StopCoroutine(LosePlayer());
@@ -123,7 +124,7 @@ public class MonsterAI : MonoBehaviour
         }
         else if (noiseLevel >= noiseThreshold)
         {
-            lastKnownPlayerPos = player.position;
+            lastKnownPlayerPos = player.transform.position;
             currentState = MonsterState.Investigative;
         }
         // Otherwise, monster keeps its current state (likely Roaming)
@@ -163,13 +164,13 @@ public class MonsterAI : MonoBehaviour
     IEnumerator CheckForPlayerMovement()
     {
         isCheckingForMovement = true;
-        lastPlayerPosition = player.position;
+        lastPlayerPosition = player.transform.position;
 
         while (lostPlayer)
         {
             yield return new WaitForSeconds(1f);
 
-            float distanceMoved = Vector3.Distance(lastPlayerPosition, player.position);
+            float distanceMoved = Vector3.Distance(lastPlayerPosition, player.transform.position);
 
             if (distanceMoved > playerMovementDetectionThreshold)
             {
@@ -179,7 +180,7 @@ public class MonsterAI : MonoBehaviour
                 yield break;
             }
 
-            lastPlayerPosition = player.position;
+            lastPlayerPosition = player.transform.position;
         }
 
         isCheckingForMovement = false;

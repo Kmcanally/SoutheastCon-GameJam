@@ -10,11 +10,13 @@ public class Barricade : MonoBehaviour
     public int health = 5;
     private float timer;
     public GameObject parts, breakSound;
+    private PlayerStealth pStealth;
+    public GameObject rocks;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        pStealth = FindObjectOfType<PlayerStealth>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class Barricade : MonoBehaviour
                     timer -= 3.0f;
                     Instantiate(breakSound, transform.position, transform.rotation);
                     Instantiate(parts, transform.position, transform.rotation);
+                    pStealth.BarricadeNoise();
                 }
             }
 

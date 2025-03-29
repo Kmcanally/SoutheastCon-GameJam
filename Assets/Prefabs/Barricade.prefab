@@ -122,3 +122,4 @@ MonoBehaviour:
   health: 5
   parts: {fileID: 5685009311647428765, guid: 651df0bea1d281c4ca25246bff8eb1d4, type: 3}
   breakSound: {fileID: 9148644119903529183, guid: d05fa2e0b30eeba4aa7cb6fd9f9d277d, type: 3}
+  rocks: {fileID: 5596029081923343325, guid: 4d3ea136b9b662d4da804f9d4f23f4fb, type: 3}

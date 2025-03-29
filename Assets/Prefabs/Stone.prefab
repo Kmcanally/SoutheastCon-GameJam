@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSound: {fileID: 9148644119903529183, guid: 89ef8ff19bcd45741a0da6248701d190, type: 3}
-  collisionParticles: {fileID: 7529670063868152993, guid: 63ab05983cf0f824382b8335269cbe3d, type: 3}
+  collisionParticles: {fileID: 2629846924779695605, guid: 848790c628dd4204db37e292e24f248d, type: 3}
