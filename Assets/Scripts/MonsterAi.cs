@@ -34,6 +34,7 @@ public class MonsterAI : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log(currentState);
             switch (currentState)
             {
                 case MonsterState.Roaming:
@@ -54,6 +55,7 @@ public class MonsterAI : MonoBehaviour
     {
         if (!agent.hasPath)
         {
+            Debug.Log("test");
             Vector3 randomPos = GetRandomNavMeshPosition(transform.position, 15f);
             agent.SetDestination(randomPos);
         }
